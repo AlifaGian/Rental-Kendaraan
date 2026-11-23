@@ -5,6 +5,11 @@
 #include <string>
 using namespace std;
 
+#define NIL NULL
+
+typedef struct ElmParent *adrParent;
+typedef struct ElmChild *adrChild;
+
 struct Kendaraan {
     string platNomor;
     string namaKendaraan;
@@ -15,10 +20,9 @@ struct Kendaraan {
 
 struct ElmChild {
     Kendaraan info;
-    ElmChild* next;
+    adrChild next;
 };
 
-// Parent
 struct Kategori {
     string idKategori;
     string namaKategori;
@@ -26,18 +30,18 @@ struct Kategori {
 
 struct ElmParent {
     Kategori info;
-    ElmParent* next;
-    ElmChild* nextChild;
+    adrParent next;
+    adrChild firstChild;
 };
 
 struct ListParent {
-    ElmParent* first;
+    adrParent first;
 };
 
 void createList(ListParent &L);
-ElmParent* createParent(string idKategori, string namaKategori);
-void insertParent(ListParent &L, ElmParent* P);
-ElmParent* findParent(ListParent L, string idKategori);
+adrParent createParent(string idKategori, string namaKategori);
+void insertParent(ListParent &L, adrParent P);
+adrParent findParent(ListParent L, string idKategori);
 void deleteParent(ListParent &L, string idKategori);
 void printParent(ListParent L);
 

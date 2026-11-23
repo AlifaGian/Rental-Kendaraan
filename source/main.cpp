@@ -1,4 +1,4 @@
-#include "rental.h"
+#include "../header/rental.h"
 #include <limits>
 
 void clearInput() {
@@ -17,16 +17,18 @@ int main() {
     int pilihan;
     do {
         cout << " \n";
-        cout << " ========== RENTAL KENDARAAN ========== \n";
+        cout << "\n=============================\n";
+        cout << "       RENTAL KENDARAAN  \n";
+        cout << "=============================\n";
         cout << "1. Tampilkan Kategori\n";
-        cout << "2. Tambah Kategori \n";
-        cout << "3. Cari Kategori \n";
-        cout << "4. Hapus Kategori \n";
+        cout << "2. Tambah Kategori\n";
+        cout << "3. Cari Kategori\n";
+        cout << "4. Hapus Kategori\n";
         cout << "0. Keluar\n";
         cout << "Pilih menu: ";
 
         if (!(cin >> pilihan)) {
-            cout << "Input harus berupa angka.\n";
+            cout << "[!] Input harus berupa angka.\n";
             clearInput();
             continue;
         }
@@ -50,13 +52,11 @@ int main() {
             case 3: {
                 cout << "Masukkan ID Kategori yang dicari: ";
                 getline(cin, idKat);
-                ElmParent* P = findParent(L, idKat);
-                if (P != nullptr) {
-                    cout << "Ditemukan: [" << P->info.idKategori << "] " << P->info.namaKategori << "\n";
-                    cout << " ";
+                adrParent P = findParent(L, idKat);
+                if (P != NIL) {
+                    cout << "[v] Ditemukan: [" << P->info.idKategori << "] " << P->info.namaKategori << "\n";
                 } else {
-                    cout << "Kategori tidak ditemukan.\n";
-                    cout << " ";
+                    cout << "[!] Kategori tidak ditemukan.\n";
                 }
                 break;
             }
@@ -69,12 +69,10 @@ int main() {
 
             case 0:
                 cout << "Program selesai.\n";
-                cout << " ";
                 break;
 
             default:
-                cout << "Pilihan tidak valid.\n";
-                cout << " ";
+                cout << "[!] Pilihan tidak valid.\n";
         }
     } while (pilihan != 0);
 
